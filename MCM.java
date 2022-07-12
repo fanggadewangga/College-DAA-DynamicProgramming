@@ -1,4 +1,4 @@
-public class FirstCode {
+public class MCM {
     public static void main(String[] args) {
         int[] p = { 30, 35, 15, 5, 10, 20, 25 };
         matrixChainOrder(p);
