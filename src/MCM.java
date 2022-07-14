@@ -1,10 +1,13 @@
+import java.util.LinkedList;
+
 public class MCM {
     public static void main(String[] args) {
         int[] p = {30, 35, 15, 5, 10, 20, 25};
-        matrixChainOrder(p);
+        LinkedList<int[][]> matrixContainer = new LinkedList<>();
+        matrixChainOrder(p, matrixContainer);
     }
 
-    static void matrixChainOrder(int[] arr) {
+    static LinkedList<int[][]> matrixChainOrder(int[] arr, LinkedList<int[][]> matrixContainer) {
         int n = arr.length - 1;
         int[][] m = new int[arr.length + 1][arr.length + 1];
         int[][] s = new int[arr.length + 1][arr.length + 1];
@@ -24,6 +27,9 @@ public class MCM {
                 }
             }
         }
+        matrixContainer.addLast(m);
+        matrixContainer.addLast(s);
+        return matrixContainer;
     }
     static void matrixView ( int[][] arr){
         System.out.print("j|i");
