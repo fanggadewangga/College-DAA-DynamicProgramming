@@ -1,8 +1,9 @@
 public class MCM {
     public static void main(String[] args) {
-        int[] p = { 30, 35, 15, 5, 10, 20, 25 };
+        int[] p = {30, 35, 15, 5, 10, 20, 25};
         matrixChainOrder(p);
     }
+
     static void matrixChainOrder(int[] arr) {
         int n = arr.length - 1;
         int[][] m = new int[arr.length + 1][arr.length + 1];
@@ -23,18 +24,21 @@ public class MCM {
                 }
             }
         }
-        System.out.println("Matriks M");
-        for (int i = 1; i < arr.length - 1; i++) {
-            for (int j = 1; j < m[i].length - 1; j++) {
-                System.out.print(m[i][j] + "\t");
-            }
-            System.out.println();
+    }
+    static void matrixView ( int[][] arr){
+        System.out.print("j|i");
+        for (int i = 1; i < arr[i].length - 1; i++) {
+            System.out.print("\t" + i);
         }
         System.out.println();
-        System.out.println("Matriks S");
         for (int i = 1; i < arr.length - 1; i++) {
-            for (int j = 1; j < s[i].length - 1; j++) {
-                System.out.print(s[i][j] + "\t");
+            System.out.print(i + "\t");
+            for (int j = 1; j < arr[i].length - 1; j++) {
+                if (arr[i][j] == 0 && i != j) {
+                    System.out.print("\t");
+                } else {
+                    System.out.print(arr[i][j] + "\t");
+                }
             }
             System.out.println();
         }
