@@ -1,13 +1,34 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class MCM {
     public static void main(String[] args) {
-        int[] p = {30, 35, 15, 5, 10, 20, 25};
+
+        Scanner cin = new Scanner(System.in);
+
+        System.out.print("Masukkan Ukuran Matriks : ");
+        int banyakMatriks = cin.nextInt();
+        int[] p = new int[banyakMatriks];
+
+        // input matrix data
+        System.out.println("Masukan elemen pada tiap baris matriks : (inputan terakhir adalah elemen kolom matriks terakhir)");
+        for (int i = 0; i < banyakMatriks; i++) {
+            p[i] = cin.nextInt();
+        }
+
         LinkedList<int[][]> matrixContainer = new LinkedList<>();
         matrixChainOrder(p, matrixContainer);
+
+        // print M and K matrix
+        for (int[][] arr : matrixContainer) {
+            matrixView(arr);
+            System.out.println("============================================================");
+        }
+
+        cin.close();
     }
 
-    static LinkedList<int[][]> matrixChainOrder(int[] arr, LinkedList<int[][]> matrixContainer) {
+    static void matrixChainOrder(int[] arr, LinkedList<int[][]> matrixContainer) {
         int n = arr.length - 1;
         int[][] m = new int[arr.length + 1][arr.length + 1];
         int[][] s = new int[arr.length + 1][arr.length + 1];
@@ -29,9 +50,9 @@ public class MCM {
         }
         matrixContainer.addLast(m);
         matrixContainer.addLast(s);
-        return matrixContainer;
     }
-    static void matrixView ( int[][] arr){
+
+    static void matrixView(int[][] arr) {
         System.out.print("j|i");
         for (int i = 1; i < arr[i].length - 1; i++) {
             System.out.print("\t" + i);
