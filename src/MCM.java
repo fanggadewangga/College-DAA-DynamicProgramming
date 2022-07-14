@@ -23,6 +23,20 @@ public class MCM {
                 }
             }
         }
-        //Ini Printnya Belum
+        System.out.println("Matriks M");
+        for (int i = 1; i < arr.length - 1; i++) {
+            for (int j = 1; j < m[i].length - 1; j++) {
+                System.out.print(m[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println("Matriks S");
+        for (int i = 1; i < arr.length - 1; i++) {
+            for (int j = 1; j < s[i].length - 1; j++) {
+                System.out.print(s[i][j] + "\t");
+            }
+            System.out.println();
+        }
     }
 }
