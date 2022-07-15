@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
- public class LCS {
+public class LCS {
     static Scanner cin = new Scanner(System.in);
     static String x, y;
     static int m, n;
 
     public static void main(String[] args) {
+        System.out.print("Masukkan String 1\t: ");
         x = cin.nextLine();
+        System.out.print("Masukkan String 2\t: ");
         y = cin.nextLine();
 
         m = x.length();
@@ -14,12 +16,14 @@ import java.util.Scanner;
 
         LCSTable lcsTable = lcsLength(x, y);
 
-        printLCS(lcsTable.b, x, m, n);
         lcsTable.printTable();
+
+        System.out.print("\nPrint LCS\t\t\t: ");
+        printLCS(lcsTable.b, x, m, n);
     }
     public static LCSTable lcsLength(String x, String y){
 
-        LCSTable table = new LCSTable(new int[m+1][n+1], new int[m+1][n+1]);
+        LCSTable table = new LCSTable(new int[m+1][n+1], new int[m+1][n+1], x, y);
 
         for (int i = 1; i <= m; i++) {
             table.c[i][0] = 0;
@@ -52,7 +56,7 @@ import java.util.Scanner;
         }
         if (b[i][j] == 2){
             printLCS(b, x, i-1, j-1);
-            System.out.print(x.charAt(i-1));
+            System.out.print(x.charAt(i-1) + " ");
         }
         else if (b[i][j] == 3){
             printLCS(b, x, i-1, j);
@@ -65,23 +69,46 @@ class LCSTable{
     int [][] b; //Arrow
     int [][] c; //Value
 
-    LCSTable(int[][] b, int[][] c){
+    String x;
+    String y;
+
+    LCSTable(int[][] b, int[][] c, String x, String y){
         this.b = b;
         this.c = c;
+        this.x = x;
+        this.y = y;
     }
     public void printTable(int [][] arr){
-        for (int[] ints : arr) {
+        for (int i = -1; i < arr.length; i++) {
+            if (i > 0){
+                System.out.print(x.charAt(i-1) + "  ");
+            }
+            else if (i == 0){
+                System.out.print("xi ");
+            }
+            else{
+                System.out.print("  ");
+            }
             for (int j = 0; j < arr.length-1; j++) {
-                System.out.print(ints[j] + " ");
+                if (i == -1){
+                    if (j == 0){
+                        System.out.print("yj ");
+                    }
+                    if (j > 0) {
+                        System.out.print(y.charAt(j - 1) + " ");
+                    }
+                    continue;
+                }
+                System.out.print(arr[i][j] + " ");
             }
             System.out.println();
         }
     }
     public void printTable(){
-        System.out.println("\n\nTable b: ");
-        printTable(b);
-        System.out.println();
         System.out.println("\nTable c: ");
         printTable(c);
+        System.out.println("\nTable b: ");
+        System.out.println("0 = Tidak ada panah\n1 = Panah kiri\n2 = Panah kiri atas\n3 = Panah atas\n");
+        printTable(b);
     }
 }
