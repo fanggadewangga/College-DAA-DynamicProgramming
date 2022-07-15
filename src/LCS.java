@@ -20,7 +20,7 @@ public class LCS {
         m = x.length();
         n = y.length();
 
-        LCSTable table = new LCSTable(new int[m][n], new int[m][n]);
+        LCSTable table = new LCSTable(new int[m+1][n+1], new int[m+1][n+1]);
 
         for (int i = 1; i <= m; i++) {
             table.c[i][0] = 0;
@@ -30,7 +30,7 @@ public class LCS {
         }
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (x.charAt(i) == y.charAt(j)){
+                if (x.charAt(i-1) == y.charAt(j-1)){
                     table.c[i][j] = table.c[i-1][j-1] + 1;
                     table.b[i][j] = 2;
                 }
@@ -54,7 +54,7 @@ public class LCS {
 
         if (b[i][j] == 2){
             printLCS(b, X, i-1, j-1);
-            System.out.println(X.charAt(i));
+            System.out.print(x.charAt(i-1));
         }
         else if (b[i][j] == 3){
             printLCS(b, X, i-1, j);
