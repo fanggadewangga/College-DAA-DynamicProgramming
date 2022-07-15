@@ -8,7 +8,7 @@ public class MCM {
 
         System.out.print("Masukkan Ukuran Matriks : ");
         int banyakMatriks = cin.nextInt();
-        int[] p = new int[banyakMatriks];
+        int[] p = new int[banyakMatriks+1];
 
         // input matrix data
         System.out.println("Masukan elemen pada tiap baris matriks : (inputan terakhir adalah elemen kolom matriks terakhir)");
