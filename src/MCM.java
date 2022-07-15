@@ -12,7 +12,7 @@ public class MCM {
 
         // input matrix data
         System.out.println("Masukan elemen pada tiap baris matriks : (inputan terakhir adalah elemen kolom matriks terakhir)");
-        for (int i = 0; i < banyakMatriks; i++) {
+        for (int i = 0; i < p.length; i++) {
             p[i] = cin.nextInt();
         }
 
