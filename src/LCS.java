@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-public class LCS {
-
+ public class LCS {
     static Scanner cin = new Scanner(System.in);
     static String x, y;
     static int m, n;
@@ -10,15 +9,15 @@ public class LCS {
         x = cin.nextLine();
         y = cin.nextLine();
 
+        m = x.length();
+        n = y.length();
+
         LCSTable lcsTable = lcsLength(x, y);
 
         printLCS(lcsTable.b, x, m, n);
-
+        lcsTable.printTable();
     }
     public static LCSTable lcsLength(String x, String y){
-
-        m = x.length();
-        n = y.length();
 
         LCSTable table = new LCSTable(new int[m+1][n+1], new int[m+1][n+1]);
 
@@ -47,19 +46,18 @@ public class LCS {
         return table;
     }
 
-    public static void printLCS(int[][] b, String X, int i, int j){
+    public static void printLCS(int[][] b, String x, int i, int j){
         if (i == 0 || j == 0){
             return;
         }
-
         if (b[i][j] == 2){
-            printLCS(b, X, i-1, j-1);
+            printLCS(b, x, i-1, j-1);
             System.out.print(x.charAt(i-1));
         }
         else if (b[i][j] == 3){
-            printLCS(b, X, i-1, j);
+            printLCS(b, x, i-1, j);
         }
-        else printLCS(b, X, i, j-1);
+        else printLCS(b, x, i, j-1);
     }
 }
 
@@ -70,5 +68,20 @@ class LCSTable{
     LCSTable(int[][] b, int[][] c){
         this.b = b;
         this.c = c;
+    }
+    public void printTable(int [][] arr){
+        for (int[] ints : arr) {
+            for (int j = 0; j < arr.length-1; j++) {
+                System.out.print(ints[j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    public void printTable(){
+        System.out.println("\n\nTable b: ");
+        printTable(b);
+        System.out.println();
+        System.out.println("\nTable c: ");
+        printTable(c);
     }
 }
